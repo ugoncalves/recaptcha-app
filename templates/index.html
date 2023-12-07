@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google reCAPTCHA Example</title>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</head>
+<body>
+
+    <h1>Google reCAPTCHA Example</h1>
+
+    <form id="captchaForm">
+        <label for="siteKey">Site Key:</label>
+        <input type="text" id="siteKey" name="siteKey" placeholder="Enter your site key" required>
+        <br>
+        <button type="button" onclick="showRecaptcha()">Show reCAPTCHA</button>
+    </form>
+
+    <div id="captchaResult"></div>
+
+    <script>
+        function showRecaptcha() {
+            // Get the site key from the input field
+            var siteKey = document.getElementById('siteKey').value;
+
+            // Render the reCAPTCHA widget
+            grecaptcha.render('captchaResult', {
+                'sitekey': siteKey,
+                'callback': function (response) {
+                    // Handle the reCAPTCHA response
+                    document.getElementById('captchaResult').innerHTML = 'reCAPTCHA Result: ' + response;
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
